@@ -54,7 +54,7 @@ public class Main {
     public static void JucaStates() {
         Juca juca = new Juca();
         while (true){
-            juca.DoAction();
+            //juca.DoAction();
             try {
                 Thread.sleep(1000);
             }
@@ -64,11 +64,30 @@ public class Main {
         }
     }
 
+    public static void MultipleAgents() {
+        Juca juca = new Juca();
+        juca.setState(new Working(juca));
+        while (true) {
+            juca.update();
+            try {
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
     public static void main(String[] args) {
 
+        // Versões anteriores
         // OldJuca();
-        JucaStates();
+        // JucaStates();
 
+        // Versão atual que está sendo trabalhada
+        MultipleAgents();
 
     }
 }

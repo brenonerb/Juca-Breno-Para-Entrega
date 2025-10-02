@@ -1,12 +1,7 @@
 public class Juca {
     private int Hunger = 0;
     private int Fatigue = 0;
-    private State state = new Working();
-
-    public void DoAction() {
-        state.DoAction(this);
-        System.out.println("Estou com " + Hunger + " de fome e " + Fatigue + " de cansaço.");
-    }
+    private StateMachine<Juca> stateMachine;
 
     public void sleep(int mimir, int fome) {
         Fatigue -= mimir;
@@ -33,8 +28,17 @@ public class Juca {
         return Hunger;
     }
 
-    public void setState(State new_state) {
-        state = new_state;
+    public Juca() {
+        stateMachine = new StateMachine<>();
+    }
+
+    public void update() {
+        System.out.println("Juca está com " + Hunger + " de fome e " + Fatigue + " de fadiga.");
+        stateMachine.update();
+    }
+
+    public void setState(State<Juca> newState) {
+        stateMachine.changeState(newState);
     }
 
 }

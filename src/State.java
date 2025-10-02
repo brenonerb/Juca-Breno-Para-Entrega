@@ -1,3 +1,6 @@
-public interface State {
-    void DoAction(Juca juca);
+public interface State<C> {
+    C getCharacter();
+    void enter();
+    void execute();
+    void leave();
 }
