@@ -3,7 +3,8 @@ public class Main {
     static JucaStates CurrentState  = JucaStates.WORKING;
     static int Hunger = 0;
     static int Fatigue = 0;
-    public static void main(String[] args) {
+
+    public static void OldJuca() {
         while (true) {
             switch (CurrentState) {
                 case WORKING:
@@ -48,5 +49,26 @@ public class Main {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void JucaStates() {
+        Juca juca = new Juca();
+        while (true){
+            juca.DoAction();
+            try {
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        // OldJuca();
+        JucaStates();
+
+
     }
 }
