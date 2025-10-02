@@ -3,6 +3,18 @@ public class Juca {
     private int Fatigue = 0;
     private StateMachine<Juca> stateMachine;
 
+    // Menções do Bob
+    private Bob bob;
+
+    public Juca(Bob bob) {
+        this.bob = bob;
+        stateMachine = new StateMachine<>();
+    }
+
+    public Bob getBob() {
+        return bob;
+    }
+
     public void sleep(int mimir, int fome) {
         Fatigue -= mimir;
         Hunger += fome;
@@ -28,13 +40,9 @@ public class Juca {
         return Hunger;
     }
 
-    public Juca() {
-        stateMachine = new StateMachine<>();
-    }
-
     public void update() {
-        System.out.println("Juca está com " + Hunger + " de fome e " + Fatigue + " de fadiga.");
         stateMachine.update();
+        System.out.println("Juca está com " + Hunger + " de fome e " + Fatigue + " de fadiga.");
     }
 
     public void setState(State<Juca> newState) {

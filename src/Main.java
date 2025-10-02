@@ -52,7 +52,8 @@ public class Main {
     }
 
     public static void JucaStates() {
-        Juca juca = new Juca();
+        Bob bob = new Bob();
+        Juca juca = new Juca(bob);
         while (true){
             //juca.DoAction();
             try {
@@ -65,12 +66,18 @@ public class Main {
     }
 
     public static void MultipleAgents() {
-        Juca juca = new Juca();
+        // Estados do Bob
+        Bob bob = new Bob();
+        bob.setState(new WatchTV(bob));
+
+        // Estados do Juca
+        Juca juca = new Juca(bob);
         juca.setState(new Working(juca));
         while (true) {
             juca.update();
+            bob.update();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(3000);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
